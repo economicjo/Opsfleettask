@@ -1,0 +1,15 @@
+executor: "KubernetesExecutor"
+logs:
+  path: "/logs"
+  persistence:
+    enabled: true
+    size: 1Gi
+
+extraVolumeMounts:
+  - name: airflow-dags
+    mountPath: /opt/airflow/dags
+
+extraVolumes:
+  - name: airflow-dags
+    configMap:
+      name: airflow-dags

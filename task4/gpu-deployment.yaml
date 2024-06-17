@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gpu-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gpu-app
+  template:
+    metadata:
+      labels:
+        app: gpu-app
+    spec:
+      containers:
+      - name: gpu-container
+        image: nvidia/cuda:11.0-base
+        resources:
+          limits:
+            nvidia.com/gpu: 1
